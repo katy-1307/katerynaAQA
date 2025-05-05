@@ -1,4 +1,5 @@
 import pytest
+import requests
 
 @pytest.mark.api
 def test_user_exists(github_api):
@@ -26,3 +27,8 @@ def test_repo_cannot_be_found(github_api):
 def test_repo_with_single_char_be_found(github_api):
     r = github_api.search_repo('s')
     assert r['total_count'] != 0
+
+@pytest.mark.apiMy
+def test_emoji_request():
+    r = requests.get('https://api.github.com/emojis')
+    assert r.status_code == 200

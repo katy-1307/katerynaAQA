@@ -17,3 +17,9 @@ class GitHub:
         body = r.json()
 
         return body
+    
+    def search_repo(self):
+        r = requests.get("https://api.github.com/emojis")
+        body = r.json()
+    
+        return body
