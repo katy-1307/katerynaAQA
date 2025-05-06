@@ -1,5 +1,4 @@
 import pytest
-import requests
 
 @pytest.mark.api
 def test_user_exists(github_api):
@@ -29,6 +28,11 @@ def test_repo_with_single_char_be_found(github_api):
     assert r['total_count'] != 0
 
 @pytest.mark.apiMy
-def test_emoji_request():
-    r = requests.get('https://api.github.com/emojis')
-    assert r.status_code == 200
+def test_emoji_get_200(github_api):
+    r = github_api.search_emoji()
+    assert r == 200
+
+@pytest.mark.apiMy
+def test_emoji_get_single_emoji(github_api):
+    r = github_api.search_single_emoji()
+    assert r["8ball"] == "https://github.githubassets.com/images/icons/emoji/unicode/1f3b1.png?v8"

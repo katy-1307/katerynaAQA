@@ -18,8 +18,14 @@ class GitHub:
 
         return body
     
-    def search_repo(self):
+    def search_emoji(self):
         r = requests.get("https://api.github.com/emojis")
+        code = r.status_code
+    
+        return code
+    
+    def search_single_emoji(self):
+        r = requests.get(f"https://api.github.com/emojis")
         body = r.json()
     
         return body
