@@ -55,3 +55,14 @@ class Database():
         self.cursor.execute(query)
         record = self.cursor.fetchall()
         return record  
+    
+    def update_customers_postalCode_by_id(self, customers_id, postalNewCode):
+        query = f"UPDATE customers SET postalCode = {postalNewCode} WHERE id = {customers_id}"
+        self.cursor.execute(query)
+        self.connection.commit() 
+
+    def select_customers_postalCode_by_id(self, customers_id):
+        query = f"SELECT postalCode FROM customers WHERE id = {customers_id}"
+        self.cursor.execute(query)
+        record = self.cursor.fetchall()
+        return record 

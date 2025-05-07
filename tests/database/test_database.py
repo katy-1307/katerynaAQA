@@ -61,3 +61,19 @@ def test_detailed_orders():
     assert orders[0][1] == 'Sergii'
     assert orders[0][2] == 'солодка вода'
     assert orders[0][3] == 'з цукром'
+
+@pytest.mark.databaseMy
+def test_product_qnt_update():
+    db = Database()
+    db.update_product_qnt_by_id (2, 10)
+    water_qnt = db.select_product_qnt_by_id(2)
+
+    assert water_qnt[0][0] == 10
+
+@pytest.mark.databaseMy
+def test_customers_postalCode_update():
+    db = Database()
+    db.update_customers_postalCode_by_id (1, 3127)
+    postalCode = db.select_customers_postalCode_by_id(1)
+
+    assert postalCode[0][0] == '3127'
